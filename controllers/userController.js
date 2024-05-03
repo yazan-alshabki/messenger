@@ -5,7 +5,6 @@ const Member = require("../models/memberModel");
 const GroupChat = require("../models/groupChatModel");
 const bcryptjs = require("bcryptjs");
 const { default: mongoose } = require("mongoose");
-const { grep } = require("jquery");
 const groupModel = require("../models/groupModel");
 const registerLoad = async (req, res) => {
   try {
