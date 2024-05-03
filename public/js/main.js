@@ -560,6 +560,8 @@ socket.on('loadNewGroupChat', function (data) {
 
 
 async function loadGroupChats() {
+  document.getElementById("group-chat-container").innerHTML = "";
+
   const data = {
     group_id: global_group_id
   };
