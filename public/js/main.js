@@ -561,11 +561,10 @@ socket.on('loadNewGroupChat', function (data) {
 
 async function loadGroupChats() {
   document.getElementById("group-chat-container").innerHTML = "";
-
   const data = {
     group_id: global_group_id
   };
-  
+
   const response = await fetch("/load-group-chats", {
     method: "POST",
     headers: {
@@ -575,6 +574,7 @@ async function loadGroupChats() {
   });
   const result = await response.json();
   if (result.success) {
+
     document.getElementById("group-chat-container").innerHTML = "";
     let chats = result.chats;
     let html = ``;
@@ -586,42 +586,45 @@ async function loadGroupChats() {
         addClass = "distance-user-chat";
       }
       html += `
-      <div class="`+ addClass + `" id='` + chats[i]['_id'] + `'>
-            <h5>
-              <span>` + chats[i]['message'] + `</span>`;
+          <div class="`+ addClass + `" id='` + chats[i]['_id'] + `'>
+                <h5>
+                  <span>` + chats[i]['message'] + `</span>`;
       if (chats[i]["sender_id"] == sender_id) {
 
         html += `
-                <i class="fa fa-trash deleteGroupChat" aria-hidden="true" 
-                  data-id='`+ chats[i]['_id'] + `' 
-                  data-toggle = "modal" 
-                  data-target="#deleteGroupChatModal">
-                </i>
-                <i class="fa fa-edit editGroupChat" aria-hidden="true" 
-                  data-id='`+ chats[i]['_id'] + `'
-                  data-msg='`+ chats[i]['message'] + `'
-                  data-toggle = "modal" data-target="#editGroupChatModal">
-                </i>
-                `;
+                            <i class="fa fa-trash deleteGroupChat" aria-hidden="true" 
+                              data-id='`+ chats[i]['_id'] + `' 
+                              data-toggle = "modal" 
+                              data-target="#deleteGroupChatModal">
+                            </i>
+                            <i class="fa fa-edit editGroupChat" aria-hidden="true" 
+                              data-id='`+ chats[i]['_id'] + `'
+                              data-msg='`+ chats[i]['message'] + `'
+                              data-toggle = "modal" data-target="#editGroupChatModal">
+                            </i>
+                            `;
       }
 
       html += `
-            </h5>
-      </div>
+                        </h5>
+                  </div>
+            
+                  `;
 
-      `;
 
-      document
-        .getElementById("group-chat-container")
-        ?.appendChild(document.createRange().createContextualFragment(html));
 
-      scrollGroupChat();
 
     }
+    document
+      .getElementById("group-chat-container")
+      ?.appendChild(document.createRange().createContextualFragment(html));
+    scrollGroupChat();
+
 
   } else {
     alert(result.msg);
   }
+
 }
 
 $(document).on('click', '.deleteGroupChat', function () {
@@ -665,8 +668,6 @@ socket.on("groupChatMessageDeleted", function (id) {
 
 
 // update chat message 
-
-
 $(document).on('click', '.editGroupChat', function () {
 
   $('#edit-group-message-id').val($(this).attr('data-id'));
