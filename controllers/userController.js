@@ -380,10 +380,10 @@ const saveGroupChat = async (req, res) => {
       message: req.body.message
     });
     const newChat = await chat.save();
-
+    var cChat = await GroupChat.findOne({ _id: newChat._id }).populate('sender_id');
     res.status(200).send({
       success: true,
-      chat: newChat
+      chat: cChat
     });
   } catch (err) {
     res.status(400).send({
@@ -397,7 +397,7 @@ const loadGroupChats = async (req, res) => {
   try {
     const groupChats = await GroupChat.find({
       group_id: req.body.group_id
-    });
+    }).populate("sender_id");
     res.status(200).send({
       success: true,
       chats: groupChats
@@ -429,8 +429,8 @@ const deleteGroupChat = async (req, res) => {
 
 const updateGroupChat = async (req, res) => {
   try {
-    await GroupChat.findByIdAndUpdate({ _id: req.body.id } , {
-      message:req.body.message
+    await GroupChat.findByIdAndUpdate({ _id: req.body.id }, {
+      message: req.body.message
     });
     res.status(200).send({
       success: true,

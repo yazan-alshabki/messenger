@@ -521,12 +521,22 @@ document
                   data-id='`+ result.chat._id + `'
                   data-msg='`+ message + `'
                   data-toggle = "modal" data-target="#editGroupChatModal">
-                  </i>
+                  </i>`;
 
-
-                </h5>
+      html += `
+      </h5>`;
+      var date = new Date(result.chat.createdAt);
+      var cDate = date.getDate();
+      var cMonth = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1);
+      var cYear = date.getFullYear();
+      let getFullDate = cDate + ' - ' + cMonth + ' - ' + cYear;
+      html += `
+          <div class="user-data"><b>Me : </b>`+ getFullDate + `</div>
         </div>
       `;
+
+
+
       document
         .getElementById("group-chat-container")
         ?.appendChild(document.createRange().createContextualFragment(html));
@@ -543,10 +553,21 @@ socket.on('loadNewGroupChat', function (data) {
     let html = `
       <div class="distance-user-chat" id='`+ data._id + `'>
               <h5>
-                <span>` + data.message + `</span>
-              </h5>
-      </div>
-    `;
+                <span>` + data.message + `</span>`;
+    html += `</h5>`;
+    var date = new Date(data.createdAt);
+    var cDate = date.getDate();
+    var cMonth = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1);
+    var cYear = date.getFullYear();
+    let getFullDate = cDate + ' - ' + cMonth + ' - ' + cYear;
+    html += `
+      <div class="user-data">
+        <img src="`+ data.sender_id.image + `" class="user-chat-image"/>
+
+        <b>`+ data.sender_id.name + ` : </b>`
+      + getFullDate +
+      `</div> </div>`;
+
     document
       .getElementById("group-chat-container")
       ?.appendChild(document.createRange().createContextualFragment(html));
@@ -580,7 +601,7 @@ async function loadGroupChats() {
     let html = ``;
     for (let i = 0; i < chats.length; i++) {
       let addClass = "";
-      if (chats[i]["sender_id"] == sender_id) {
+      if (chats[i]["sender_id"]._id == sender_id) {
         addClass = "current-user-chat";
       } else {
         addClass = "distance-user-chat";
@@ -589,7 +610,7 @@ async function loadGroupChats() {
           <div class="`+ addClass + `" id='` + chats[i]['_id'] + `'>
                 <h5>
                   <span>` + chats[i]['message'] + `</span>`;
-      if (chats[i]["sender_id"] == sender_id) {
+      if (chats[i]["sender_id"]._id == sender_id) {
 
         html += `
                             <i class="fa fa-trash deleteGroupChat" aria-hidden="true" 
@@ -606,7 +627,28 @@ async function loadGroupChats() {
       }
 
       html += `
-                        </h5>
+                        </h5>`;
+      var date = new Date(chats[i]["createdAt"]);
+      var cDate = date.getDate();
+      var cMonth = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1);
+      var cYear = date.getFullYear();
+      let getFullDate = cDate + ' - ' + cMonth + ' - ' + cYear;
+      if (chats[i]["sender_id"]._id == sender_id) {
+        html += `
+              <div class="user-data"><b>Me : </b>`+ getFullDate + `</div>
+        `;
+      } else {
+        html += `
+        <div class="user-data">
+          <img src="`+ chats[i]['sender_id'].image + `" class="user-chat-image"/>
+
+          <b>`+ chats[i]['sender_id'].name + ` : </b>`
+          + getFullDate +
+          `</div>`;
+      }
+
+      html += `
+      
                   </div>
             
                   `;
