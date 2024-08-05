@@ -4,6 +4,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -31,11 +32,12 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-family: "Roboto", sans-serif !important;
+  /* --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  /* --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace; */
 }
 
 *,
@@ -46,7 +48,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: "Roboto", sans-serif !important;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -10720,15 +10722,15 @@ h5,
 #sidebar {
   min-width: 250px;
   max-width: 250px;
-  background: #212121;
-  color: #fff;
+  background: #1e293b;
+  color: #dcf2f1;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
   position: relative;
 }
 #sidebar .h6 {
-  color: #fff;
+  color: #7fc7d9;
 }
 #sidebar.active {
   margin-left: -250px;
@@ -10742,10 +10744,11 @@ h5,
   font-size: 20px;
 }
 #sidebar h1 .logo {
-  color: #fff;
+  text: center;
+  color: #dcf2f1;
   display: block;
   padding: 10px 30px;
-  background: #2f89fc;
+  background: #365486;
 }
 #sidebar ul.components {
   padding: 0;
@@ -10766,17 +10769,18 @@ h5,
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 #sidebar ul li a:hover {
-  color: #fff;
-  background: #2f89fc;
-  border-bottom: 1px solid #2f89fc;
+  background: #dcf2f1;
+  color: #1e293b;
+  border-bottom: 1px solid #dcf2f1;
 }
 #sidebar ul li.active > a {
   background: transparent;
   color: #fff;
 }
 #sidebar ul li.active > a:hover {
-  background: #2f89fc;
-  border-bottom: 1px solid #2f89fc;
+  background: #dcf2f1;
+  border-bottom: 1px solid #dcf2f1;
+  color: #1e293b;
 }
 @media (max-width: 991.98px) {
   #sidebar {
@@ -10812,7 +10816,7 @@ h5,
   border-color: transparent;
 }
 #sidebar .custom-menu .btn.btn-primary i {
-  color: black;
+  color: #1e293b;
   font-size: 24px;
 }
 #sidebar .custom-menu .btn.btn-primary:hover,
@@ -10851,13 +10855,13 @@ a[data-toggle="collapse"] {
 }
 
 .btn.btn-primary {
-  background: #2f89fc;
-  border-color: #2f89fc;
+  background: #365486;
+  border-color: #365486;
 }
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
-  background: #2f89fc !important;
-  border-color: #2f89fc !important;
+  background: #1e293b !important;
+  border-color: #1e293b !important;
 }
 
 .footer p {
@@ -10904,9 +10908,9 @@ a[data-toggle="collapse"] {
 }
 
 #chat-container {
-  background-color: lightblue;
+  background-color: white;
   width: 100%;
-  height: 400px;
+  height: 80vh;
   overflow: scroll;
 }
 
@@ -10929,11 +10933,18 @@ a[data-toggle="collapse"] {
   margin: 10px;
   color: black;
 }
-
+.current-user-chat span {
+  background-color: #7fc7d977;
+  color: #1e293b;
+}
 .distance-user-chat {
   text-align: left;
   margin: 10px;
   color: black;
+}
+.distance-user-chat span {
+  background-color: #1e293b;
+  color: #dcf2f1;
 }
 
 .fa-trash {
@@ -10964,14 +10975,13 @@ a[data-toggle="collapse"] {
   display: none;
 }
 
-.user-data{
+.user-data {
   font-size: 12px;
 }
 
-.user-chat-image{
+.user-chat-image {
   width: 25px;
   height: 25px;
-  border-radius:100%;
-  border :1px solid red;
-  
+  border-radius: 100%;
+  border: 1px solid red;
 }

@@ -1,34 +1,33 @@
 <%- include('layouts/header.ejs') %>
-  <h2 class="mb-4">Hi ,<%= user.firstName %> <%= user.lastName %>  
-  </h2>
+
   <div class="row">
     <div class="col-md-4">
-      <ul class="list-group">
+      <ul class="list-group shadow-sm" style="background-color: #e0f2fe">
         <% if(users.length> 0 ){
           for(let i=0;i<users.length;i++){ %>
-            <li class="list-group-item list-group-item-dark cursor-pointer user-list" data-id="<%= users[i]['_id'] %>">
-              <img src="<%=users[i]['photo'] %>" alt="" width="50px" height="50px">
+            <li style = "background-color: #7fc7d977" class="position-relative list-group-item list-group-item-dark cursor-pointer user-list" style="color: #1e293b" data-id="<%= users[i]['_id'] %>">
+              <img src="<%=users[i]['photo'] %>" alt="" width="50px" height="50px" class="rounded-circle mr-2">
               <%= users[i]['firstName'] %> <%= users[i]["lastName"] %> 
                 <% if(users[i]['is_online']=='1' ){ %>
-                  <sup class="online-status" id="<%= users[i]['_id']%>-status">Online</sup>
+                  <sup class="online-status position-absolute" style="font-size: 10px; right: 5%; top: 50%;" id="<%= users[i]['_id']%>-status">Online</sup>
                   <% }else { %>
-                    <sup class="offline-status" id="<%= users[i]['_id']%>-status">Offline</sup>
+                    <sup class="offline-status position-absolute" style="font-size: 10px; right: 5%; top: 50%;" id="<%= users[i]['_id']%>-status">Offline</sup>
                     <% } %>
             </li>
             <% } } %>
       </ul>
     </div>
     <div class="col-md-8">
-      <h3 class="start-head">Click to start the chat </h3>
+      <h3 class="start-head" style="color: rgba(128, 128, 128, 0.596); font-size: 24px"><i>Welcome, <%= user.firstName %> <%= user.lastName %> <br/> Click to start a chat</i> </h3>
       <div class="chat-section">
-        <div id="chat-container">
+        <div id="chat-container" class="rounded">
 
 
 
         </div>
         <form action="" id="chat-form">
-          <input type="text" name="message" id="message" placeholder="enter message" class="border" required>
-          <input type="submit" value="send message" class="btn btn-primary">
+          <input type="text" name="message" id="message" placeholder="Write a message..." class="border rounded p-2" style="background-color: rgb(233, 226, 226)" required>
+          <input type="submit" value="Send message" class="btn btn-primary rounded">
         </form>
 
       </div>

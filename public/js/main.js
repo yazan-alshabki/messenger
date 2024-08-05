@@ -100,16 +100,16 @@ document
       let chat = result.data.message;
       let html =
         `
-	  <div class="current-user-chat" id='` +
+	  <div class="current-user-chat my-4" id='` +
         result.data._id +
         `'>
-		<h5><span>` +
+		<h5><span class="px-5 py-2 rounded mx-1" style="background-color: #7fc7d977;" >` +
         chat +
         `</span>
-		  <i class="fa fa-trash" aria-hidden="true" data-id='` +
+		  <i class="fa fa-trash" style="color: #1e293b; font-size: 18px; margin-right: 5px;" aria-hidden="true" data-id='` +
         result.data._id +
         `' data-toggle = "modal" data-target="#deleteChatModal"></i>    
-		  <i class="fa fa-edit" aria-hidden="true" data-msg='` +
+		  <i class="fa fa-edit" style="color: #1e293b; font-size: 18px;" aria-hidden="true" data-msg='` +
         chat +
         `' data-id='` +
         result.data._id +
@@ -132,12 +132,12 @@ socket.on("loadNewChat", function (data) {
   if (sender_id == data.receiver_id && receiver_id == data.sender_id) {
     let html =
       `
-	<div class="distance-user-chat" id='` +
+	<div class="distance-user-chat my-4" id='` +
       data._id +
       `'>
-			<h5>` +
+			<h5><span class="px-5 py-2 rounded mx-1" >` +
       data.message +
-      `
+      `</span>
 			</h5>
 		</div>
 	`;
@@ -156,9 +156,9 @@ socket.on("loadChats", function (data) {
   for (let i = 0; i < chats.length; i++) {
     let addClass = "";
     if (chats[i]["sender_id"] == sender_id) {
-      addClass = "current-user-chat";
+      addClass = "current-user-chat my-4";
     } else {
-      addClass = "distance-user-chat";
+      addClass = "distance-user-chat my-4";
     }
     let html =
       `
@@ -167,16 +167,16 @@ socket.on("loadChats", function (data) {
       `' id='` +
       chats[i]["_id"] +
       `'>  
-			<h5><span>` +
+			<h5><span class="px-5 py-2 rounded mx-1" >` +
       chats[i]["message"] +
       `</span>`;
 
     if (chats[i]["sender_id"] == sender_id) {
       html +=
-        `<i class="fa fa-trash" aria-hidden="true" data-id='` +
+        `<i class="fa fa-trash" style="color: #1e293b; font-size: 18px; margin-right: 5px;" aria-hidden="true" data-id='` +
         chats[i]["_id"] +
         `' data-toggle = "modal" data-target="#deleteChatModal"></i>
-		  <i class="fa fa-edit" aria-hidden="true" data-msg='` +
+		  <i class="fa fa-edit" style="color: #1e293b; font-size: 18px; margin-right: 5px;" aria-hidden="true" data-msg='` +
         chats[i]["message"] +
         `' data-id='` +
         chats[i]["_id"] +
