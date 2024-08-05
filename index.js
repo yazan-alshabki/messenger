@@ -65,6 +65,7 @@ usp.on("connection", async function (socket) {
 
   // update chats
   socket.on("chatUpdated", function (data) {
+    console.log(data);
     socket.broadcast.emit("chatMessageUpdated", data);
   });
 

@@ -325,7 +325,8 @@ $(".addMember").click(async function () {
         users[i]["_id"] +
         `"/></td>
           <td>` +
-        users[i]["name"] +
+        users[i]["firstName"] + " "
+      users[i]["lastName"] +
         `</td>
         </tr>
       `;
@@ -562,9 +563,9 @@ socket.on('loadNewGroupChat', function (data) {
     let getFullDate = cDate + ' - ' + cMonth + ' - ' + cYear;
     html += `
       <div class="user-data">
-        <img src="`+ data.sender_id.image + `" class="user-chat-image"/>
+        <img src="`+ data.sender_id.photo + `" class="user-chat-image"/>
 
-        <b>`+ data.sender_id.name + ` : </b>`
+        <b>`+ data.sender_id.firstName + " " + data.sender_id.lastName + ` : </b>`
       + getFullDate +
       `</div> </div>`;
 
@@ -640,9 +641,9 @@ async function loadGroupChats() {
       } else {
         html += `
         <div class="user-data">
-          <img src="`+ chats[i]['sender_id'].image + `" class="user-chat-image"/>
+          <img src="`+ chats[i]['sender_id'].photo + `" class="user-chat-image"/>
 
-          <b>`+ chats[i]['sender_id'].name + ` : </b>`
+          <b>`+ chats[i]['sender_id'].firstName + " " + chats[i]['sender_id'].lastName + ` : </b>`
           + getFullDate +
           `</div>`;
       }
