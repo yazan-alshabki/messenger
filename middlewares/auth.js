@@ -25,6 +25,7 @@ const isLogout = async (req, res, next) => {
       res.redirect("/dashboard");
     }
     next();
+    
   } catch (err) {
     console.log(err.message);
   }
